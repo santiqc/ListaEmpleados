@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr/public_api';
-import { EmpleadoService } from 'src/app/services/empleado.service';
+import { EmpleadoService } from 'app/services/empleado.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-create-empleados',
@@ -46,11 +47,16 @@ export class CreateEmpleadosComponent implements OnInit {
 
       await this.empleadoService.addEmpleado(empleado);
       console.log('Empleado agregado con exito');
-      this.toastr.success('Empleado agregado con exito', 'Exito!');
+      this.toastr.success('Empleado agregado con exito', 'Exito!',{
+        timeOut: 3000,
+      });
       this.router.navigate(['/listEmpleados']);
       console.table(empleado);
     } catch (error) {
-      console.log(error);
+      this.toastr.error('Error al crear el empleado', 'Error!', {
+        timeOut: 3000,
+      });
+
     }
   }
 }
