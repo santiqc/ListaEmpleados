@@ -3,7 +3,11 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center">
                 <div class="card-body">
-                    <h4>Crear Empleado</h4>
+                    <h4>Crear Empleado
+                        <div class="spinner-border" role="status" style="float: right;" *ngIf="loading">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                    </h4>
                     <div class="alert alert-danger" role="alert" *ngIf="subbmitted && createEmpleado.invalid">
                         Todos los campos son obligatorios!
                       </div>
@@ -27,7 +31,7 @@
                             </div>
                         </div>
                         <input
-                            type="text"
+                            type="number"
                             class="form-control form-control-lg mt-4"
                             placeholder="Documento"
                             formControlName="documento"

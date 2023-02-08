@@ -1,0 +1,55 @@
+<app-loadding [isVisible]="loading"></app-loadding>
+<div
+    class="container mt-4"
+    *ngIf="!loading && empleados.length > 0"
+>
+    <div class="card">
+        <div class="card-body">
+            <span class="h3">Listado de Empleados</span>
+            <button
+                type="button"
+                class="btn btn-success btn-lg"
+                routerLink="/createEmpleado"
+                style="float: right;"
+            >
+                Agregar
+            </button>
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Salario</th>
+                        <th>Fecha de creacion</th>
+                        <th>Fecha de actualizacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empleado of empleados">
+                        <td>{{empleado.documento}}</td>
+                        <td>{{empleado.nombre}}</td>
+                        <td>{{empleado.apellido}}</td>
+                        <td>{{empleado.salario | currency}}</td>
+                        <td>
+                            {{empleado.fechaCreacion.toDate() | date: 'medium'}}
+                        </td>
+                        <td>
+                            {{empleado.fechaActualizacion.toDate() | date: 'medium'}}
+                        </td>
+                        <td>
+                            <i
+                                class="fa-solid fa-pen-to-square fa-lg text-info"
+                                style="margin-right: 12px;"
+                            ></i>
+                            <i
+                                class="fa-solid fa-trash fa-lg text-danger"
+                                (click)="deleteEmpleado(empleado.id)"
+                            ></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

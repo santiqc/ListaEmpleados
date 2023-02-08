@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateEmpleadosComponent implements OnInit {
   public createEmpleado: FormGroup;
   public subbmitted = false;
+  public loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -21,10 +22,10 @@ export class CreateEmpleadosComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.createEmpleado = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      documento: ['', Validators.required],
-      salario: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(4)]],
+      apellido: ['', [Validators.required, Validators.minLength(4)]],
+      documento: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
+      salario: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
     });
   }
 
@@ -44,14 +45,14 @@ export class CreateEmpleadosComponent implements OnInit {
         fechaCreacion: new Date(),
         fechaActualizacion: new Date(),
       };
-
+      this.loading = true;
       await this.empleadoService.addEmpleado(empleado);
-      console.log('Empleado agregado con exito');
       this.toastr.success('Empleado agregado con exito', 'Exito!',{
         timeOut: 3000,
+        positionClass: 'toast-bottom-right',
       });
+      this.loading = false;
       this.router.navigate(['/listEmpleados']);
-      console.table(empleado);
     } catch (error) {
       this.toastr.error('Error al crear el empleado', 'Error!', {
         timeOut: 3000,
