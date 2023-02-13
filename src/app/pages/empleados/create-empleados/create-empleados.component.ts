@@ -102,8 +102,8 @@ export class CreateEmpleadosComponent implements OnInit {
   public async init() {
     try {
       this.loading = true;
-      this.titulo = 'Editar Empleado';
       if (this.id !== null) {
+        this.titulo = 'Editar Empleado';
         const response: any = await this.empleadoService.getEmpleado(this.id);
         for (const empleado of response) {
           this.createEmpleado.setValue({
