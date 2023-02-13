@@ -3,7 +3,7 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center">
                 <div class="card-body">
-                    <h4>Crear Empleado
+                    <h4>{{titulo}}
                         <div class="spinner-border" role="status" style="float: right;" *ngIf="loading">
                             <span class="visually-hidden">Loading...</span>
                           </div>
@@ -11,7 +11,7 @@
                     <div class="alert alert-danger" role="alert" *ngIf="subbmitted && createEmpleado.invalid">
                         Todos los campos son obligatorios!
                       </div>
-                    <form class="mt-4" [formGroup]="createEmpleado" (ngSubmit)="agregarEmpleado()">
+                    <form class="mt-4" [formGroup]="createEmpleado" (ngSubmit)="id !==null ? editEmpleado() : agregarEmpleado()">
                         <div class="row">
                             <div class="col">
                                 <input
@@ -55,7 +55,7 @@
                                 type="submit"
                                 class="btn btn-success btn-lg"
                             >
-                                Crear
+                                {{id ? 'Actualizar' : 'Crear'}}
                             </button>
                         </div>
                     </form>
