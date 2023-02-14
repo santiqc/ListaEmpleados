@@ -1,6 +1,18 @@
-
-  <nav class="navbar bg-dark" data-bs-theme="dark">
+<nav
+    class="navbar bg-dark"
+    data-bs-theme="dark"
+>
     <div class="container-fluid">
-        <a class="navbar-brand text-light" href="#">Empleados</a>
+        <a
+            class="navbar-brand text-light"
+            href="#"
+        >
+            Empleados
+        </a>
+        <app-action
+            [readyLogin]="readyLogin"
+            (event)="onLogout()"
+        ></app-action>
+
     </div>
-  </nav>
+</nav>

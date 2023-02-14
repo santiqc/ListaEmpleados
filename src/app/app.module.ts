@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { ListEmpleadosComponent } from './pages/empleados/list-empleados/list-empleados.component';
 import { CreateEmpleadosComponent } from './pages/empleados/create-empleados/create-empleados.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { LoaddingComponent } from './shared/loadding/loadding.component';
 import { AlertComponent } from './components/modals/alert/alert.component';
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './pages/empleados/login/login.component';
 
+//imports firebase
+import { HttpClientModule } from '@angular/common/http';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { ActionComponent } from './components/buttons/action/action.component';
 
 @NgModule({
   declarations: [
@@ -28,19 +33,23 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     CreateEmpleadosComponent,
     LoaddingComponent,
     AlertComponent,
+    LoginComponent,
+    ActionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     ReactiveFormsModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

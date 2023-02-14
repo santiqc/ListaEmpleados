@@ -1,8 +1,9 @@
-<app-loadding [isVisible]="loading"></app-loadding>
+<app-navbar></app-navbar>
 <div
     class="container mt-4"
     *ngIf="!loading && empleados.length > 0"
 >
+    <app-loadding [isVisible]="loading"></app-loadding>
     <div class="card">
         <div class="card-body">
             <span class="h3">Listado de Empleados</span>

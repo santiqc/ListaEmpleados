@@ -39,9 +39,6 @@ export class EmpleadoService {
     return await this.fb.collection('empleados').doc(id).delete();
   }
 
-  // public getEmpleado(id: string): Observable<any> {
-  //   return this.fb.collection('empleado').doc(id).snapshotChanges();
-  // }
   public async getEmpleado(id: string): Promise<[]> {
     return new Promise((resolve, reject) => {
       this.fb

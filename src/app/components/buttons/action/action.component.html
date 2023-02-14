@@ -1,0 +1,15 @@
+<button
+    *ngIf="readyLogin"
+    class="btn btn-outline-primary"
+    routerLink="/login"
+    routerLinkActive="active"
+>
+    Iniciar sesion
+</button>
+<button
+    *ngIf="!readyLogin"
+    class="btn btn-outline-danger"
+    (click)="click()"
+>
+    Cerrar sesion
+</button>
