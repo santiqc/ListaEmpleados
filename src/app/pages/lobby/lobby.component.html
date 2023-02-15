@@ -1,9 +1,34 @@
-<app-navbar [readyLogin]="true"></app-navbar>
-<main role="main" class="container" style="background-color: aliceblue; height: 250px; margin-top: 25px; border-radius: 3px;">
+<app-navbar [readyLogin]="token ? false : true"></app-navbar>
+<main
+    role="main"
+    class="container"
+    style="background-color: aliceblue; height: 250px; margin-top: 25px; border-radius: 3px;"
+>
     <div class="jumbotron">
-      <h1>Empleados
-      </h1>
-      <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-      <a class="btn btn-lg btn-primary" routerLink="/login" role="button">Inicia sesion »</a>
+        <h1>Empleados</h1>
+
+        <p class="lead">
+            This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.
+        </p>
+        <div
+            class="div"
+            *ngIf="!token"
+        >
+            <a
+                class="btn btn-lg btn-primary"
+                routerLink="/login"
+                role="button"
+            >
+                Inicia sesion »
+            </a>
+        </div>
+
+        <div
+            class="alert alert-primary"
+            role="alert"
+            *ngIf="token"
+        >
+            Bienvenido
+        </div>
     </div>
-  </main>
+</main>

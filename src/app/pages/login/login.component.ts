@@ -77,7 +77,12 @@ export class LoginComponent implements OnInit {
       const email = this.form.value.email;
       const password = this.form.value.password;
 
-      await this.loginSrv.loginEmail(email, password);
+      const response: any = await this.loginSrv.loginEmail(email, password);
+      const token: any = response.user.accessToken;
+
+      localStorage.setItem('token', token);
+      console.log(response);
+
       this.route.navigateByUrl('/empleados');
     } catch (error) {
       console.log(error);

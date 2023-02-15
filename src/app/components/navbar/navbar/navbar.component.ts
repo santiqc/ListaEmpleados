@@ -10,13 +10,18 @@ import { LoginService } from 'app/services/login.service';
 export class NavbarComponent implements OnInit {
   @Input() readyLogin = false;
   @Output() logout = new EventEmitter<any>();
-  constructor(private loginSrv: LoginService, private router: Router) {}
+
+  public token!: string | null;
+  constructor(private loginSrv: LoginService, private router: Router) {
+    this.token = localStorage.getItem('token');
+  }
 
   ngOnInit(): void {}
 
   public async onLogout() {
     try {
       await this.loginSrv.logout();
+      localStorage.removeItem('token');
       this.router.navigateByUrl('/login');
     } catch (error) {
       console.log(error);

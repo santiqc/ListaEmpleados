@@ -5,7 +5,14 @@
     <div class="container-fluid">
         <a
             class="navbar-brand text-light"
-            href="/empleados"
+            routerLink="/lobby"
+        >
+            Home
+        </a>
+        <a
+            routerLink="/empleados"
+            class="navbar-brand text-light"
+            *ngIf="token"
         >
             Empleados
         </a>

@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoaddingComponent } from './shared/loadding/loadding.component';
 import { AlertComponent } from './components/modals/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './pages/empleados/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 
 //imports firebase
 import { HttpClientModule } from '@angular/common/http';

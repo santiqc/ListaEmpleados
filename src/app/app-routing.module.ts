@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateEmpleadosComponent } from './pages/empleados/create-empleados/create-empleados.component';
 import { ListEmpleadosComponent } from './pages/empleados/list-empleados/list-empleados.component';
-import { LoginComponent } from './pages/empleados/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 
 import {
   AngularFireAuthGuard,

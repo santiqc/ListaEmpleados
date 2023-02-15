@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LobbyComponent implements OnInit {
 
+  public token!: string | null;;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('token');
+    console.log(this.token);
+    
   }
 
 }
