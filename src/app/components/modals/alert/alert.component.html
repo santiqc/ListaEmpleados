@@ -1,1 +1,37 @@
-<p>alert works!</p>
+<ng-template
+    #alertModal
+    let-modal
+>
+    <div class="modal-header">
+        <h4
+            class="modal-title"
+            id="modal-basic-title"
+        >
+            {{modalTittle}}
+        </h4>
+    </div>
+    <div
+        class="modal-body"
+    >
+      {{ modalMessage}}
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-danger"
+            (click)="modal.dismiss(false)"
+            (click)="closeModal()"
+        >
+            Cancelar
+        </button>
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="modal.close(true)"
+            (click)="acceptModal(parameter)"
+            (click)="closeModal()"
+        >
+            Aceptar
+        </button>
+    </div>
+</ng-template>

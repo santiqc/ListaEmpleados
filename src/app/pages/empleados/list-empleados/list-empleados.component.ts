@@ -10,18 +10,17 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './list-empleados.component.html',
   styleUrls: ['./list-empleados.component.css'],
 })
-export class ListEmpleadosComponent implements OnInit{
+export class ListEmpleadosComponent implements OnInit {
   @ViewChild(AlertComponent, { static: true })
   modals!: AlertComponent;
+
   public empleados: any = [];
   public loading = false;
+
   constructor(
-    private fb: FormBuilder,
     private empleadoService: EmpleadoService,
-    private router: Router,
     private toastr: ToastrService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getEmpleados();
@@ -40,23 +39,32 @@ export class ListEmpleadosComponent implements OnInit{
     }
   }
 
-
   public async deleteEmpleado(id: string) {
     try {
       this.loading = true;
-      await this.empleadoService.deleteEmpleado(id);
-      this.toastr.success('Empleado eliminado correctamente', 'Registro eliminado',{
-        timeOut: 3000,
-        positionClass: 'toast-bottom-right',
-      })
-      this.getEmpleados();
-      
+
+      const response: any = await this.modals.launchModal(
+        'Estas seguro de eliminar el empleado',
+        'Deseas Eliminar'
+      );
+      if (response) {
+        await this.empleadoService.deleteEmpleado(id);
+        this.toastr.success(
+          'Empleado eliminado correctamente',
+          'Registro eliminado',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        this.getEmpleados();
+      }
     } catch (error) {
-      this.toastr.error('Error al eliminar el registro', 'Registro fail',{
+      this.toastr.error('Error al eliminar el registro', 'Registro fail', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right',
-      })
-    } finally{
+      });
+    } finally {
       this.loading = false;
     }
   }
