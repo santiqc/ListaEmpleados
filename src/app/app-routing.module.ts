@@ -6,27 +6,33 @@ import { LoginComponent } from './pages/empleados/login/login.component';
 
 import {
   AngularFireAuthGuard,
-  canActivate,
   redirectUnauthorizedTo,
 } from '@angular/fire/compat/auth-guard';
+import { LobbyComponent } from './pages/lobby/lobby.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+
 const routes: Routes = [
+  { path: '', component: LobbyComponent },
+  { path: 'login', component: LoginComponent },
   {
-    path: '',
+    path: 'empleados',
     component: ListEmpleadosComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-  { path: 'empleados', component: ListEmpleadosComponent },
   {
     path: 'createEmpleado',
     component: CreateEmpleadosComponent,
     canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'editarEmpleado/:id',
     component: CreateEmpleadosComponent,
     canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

@@ -24,6 +24,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ActionComponent } from './components/buttons/action/action.component';
+import { LobbyComponent } from './pages/lobby/lobby.component';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { ActionComponent } from './components/buttons/action/action.component';
     AlertComponent,
     LoginComponent,
     ActionComponent,
+    LobbyComponent,
   ],
   imports: [
     BrowserModule,

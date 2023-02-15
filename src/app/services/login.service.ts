@@ -7,15 +7,18 @@ import {
   GoogleAuthProvider,
   signOut,
 } from 'firebase/auth';
-
+import { initializeApp } from 'firebase/app';
+import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  public auth = getAuth();
+  public app = initializeApp(environment.firebase);
+  public auth = getAuth(this.app);
   public provider = new GoogleAuthProvider();
 
-  constructor() {}
+  constructor() {
+  }
 
   public async login() {
     return await signInWithPopup(this.auth, this.provider);
@@ -26,10 +29,10 @@ export class LoginService {
   }
 
   public async registerEmail(email: any, password: string) {
-    return await createUserWithEmailAndPassword(this.auth, email, password);
+    return await  createUserWithEmailAndPassword(this.auth, email, password);;
   }
-  
+
   public async loginEmail(email: any, password: string) {
-    return await signInWithEmailAndPassword(this.auth, email, password);
+    return await  signInWithEmailAndPassword(this.auth, email, password);;
   }
 }
