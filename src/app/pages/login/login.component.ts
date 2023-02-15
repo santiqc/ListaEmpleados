@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
       const token: any = response.user.accessToken;
 
       localStorage.setItem('token', token);
-      console.log(response);
 
       this.route.navigateByUrl('/empleados');
     } catch (error) {
